@@ -2,6 +2,7 @@ package com.uallace.helpdeskbackend.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.uallace.helpdeskbackend.domain.entities.Chamado;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.scheduling.support.SimpleTriggerContext;
 
 import java.io.Serializable;
@@ -14,13 +15,19 @@ public class ChamadoDTO implements Serializable {
     private LocalDate dataAbertura = LocalDate.now();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento = LocalDate.now();
-    private Integer prioridade;
-    private Integer status;
-    private String titulo;
-    private String observacoes;
-    private Integer cliente;
-    private Integer tecnico;
 
+    @NotNull(message = "O campo PRIORIDADE é requerido!")
+    private Integer prioridade;
+    @NotNull(message = "O campo STATUS é requerido!")
+    private Integer status;
+    @NotNull(message = "O campo TITULO é requerido!")
+    private String titulo;
+    @NotNull(message = "O campo OBSERVAÇÕES é requerido!")
+    private String observacoes;
+    @NotNull(message = "O campo CLIENTE é requerido!")
+    private Integer cliente;
+    @NotNull(message = "O campo TECNICO é requerido!")
+    private Integer tecnico;
     private String nomeTecnico;
     private String nomeCliente;
 
