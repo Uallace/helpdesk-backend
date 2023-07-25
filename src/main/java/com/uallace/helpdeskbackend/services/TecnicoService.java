@@ -8,6 +8,7 @@ import com.uallace.helpdeskbackend.exceptions.NotFoundException;
 import com.uallace.helpdeskbackend.repositories.PessoaRepository;
 import com.uallace.helpdeskbackend.repositories.TecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class TecnicoService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder enconder;
+
     public Tecnico findById(Integer id){
         Optional<Tecnico> tecnico = tecnicoRepository.findById(id);
         return tecnico.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id));
@@ -33,6 +37,7 @@ public class TecnicoService {
 
     public Tecnico create(TecnicoDTO dto) {
         dto.setId(null);
+        dto.setSenha(enconder.encode(dto.getSenha()));
         validaPorCpfEEmail(dto);
         Tecnico tecnico = new Tecnico(dto);
         return tecnicoRepository.save(tecnico);

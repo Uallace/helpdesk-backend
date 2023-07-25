@@ -4,7 +4,7 @@ package com.uallace.helpdeskbackend.controllers;
 import com.uallace.helpdeskbackend.domain.dtos.TecnicoDTO;
 import com.uallace.helpdeskbackend.domain.entities.Tecnico;
 import com.uallace.helpdeskbackend.services.TecnicoService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

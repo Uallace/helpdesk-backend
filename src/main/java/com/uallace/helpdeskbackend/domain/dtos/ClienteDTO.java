@@ -3,8 +3,9 @@ package com.uallace.helpdeskbackend.domain.dtos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.uallace.helpdeskbackend.domain.entities.Cliente;
 import com.uallace.helpdeskbackend.domain.enums.Perfil;
-import jakarta.validation.constraints.NotNull;
 
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;

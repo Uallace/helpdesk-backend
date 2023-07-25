@@ -8,6 +8,7 @@ import com.uallace.helpdeskbackend.exceptions.NotFoundException;
 import com.uallace.helpdeskbackend.repositories.PessoaRepository;
 import com.uallace.helpdeskbackend.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class ClienteService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder enconder;
+
     public Cliente findById(Integer id){
         Optional<Cliente> cliente = clienteRepository.findById(id);
         return cliente.orElseThrow(() -> new NotFoundException("Objeto não encontrado! id: " + id));
@@ -33,6 +37,7 @@ public class ClienteService {
 
     public Cliente create(ClienteDTO dto) {
         dto.setId(null);
+        dto.setSenha(enconder.encode(dto.getSenha()));
         validaPorCpfEEmail(dto);
         Cliente cliente = new Cliente(dto);
         return clienteRepository.save(cliente);

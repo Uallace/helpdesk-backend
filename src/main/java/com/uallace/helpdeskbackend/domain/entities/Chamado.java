@@ -3,8 +3,9 @@ package com.uallace.helpdeskbackend.domain.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.uallace.helpdeskbackend.domain.enums.Prioridade;
 import com.uallace.helpdeskbackend.domain.enums.Status;
-import jakarta.persistence.*;
 
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;

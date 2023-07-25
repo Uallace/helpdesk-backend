@@ -4,9 +4,10 @@ package com.uallace.helpdeskbackend.controllers;
 import com.uallace.helpdeskbackend.domain.dtos.ClienteDTO;
 import com.uallace.helpdeskbackend.domain.entities.Cliente;
 import com.uallace.helpdeskbackend.services.ClienteService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -21,6 +22,7 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+
 
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> findAll(){
