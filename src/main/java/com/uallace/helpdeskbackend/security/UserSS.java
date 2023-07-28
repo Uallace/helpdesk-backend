@@ -14,6 +14,7 @@ public class UserSS implements UserDetails {
     private Integer id;
     private String email;
     private String senha;
+    private Collection<? extends GrantedAuthority> authorities;
 
     public UserSS(Integer id, String email, String senha, Set<Perfil> perfis) {
         this.id = id;
@@ -25,7 +26,6 @@ public class UserSS implements UserDetails {
     public Integer getId() {
         return id;
     }
-    private Collection<? extends GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
