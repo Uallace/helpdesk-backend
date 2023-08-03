@@ -29,7 +29,7 @@ public class Tecnico extends Pessoa{
         this.cpf = tecnicoDTO.getCpf();
         this.email = tecnicoDTO.getEmail();
         this.senha = tecnicoDTO.getSenha();
-        this.perfil = tecnicoDTO.getPerfil().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
+        this.perfis = tecnicoDTO.getPerfis().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = tecnicoDTO.getDataCriacao();
     }
 

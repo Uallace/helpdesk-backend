@@ -28,7 +28,7 @@ public class ClienteDTO implements Serializable {
     @NotNull(message = "Campo SENHA é requerido!")
     protected String senha;
 
-    protected Set<Integer> perfil = new HashSet<>();
+    protected Set<Integer> perfis = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
@@ -37,14 +37,14 @@ public class ClienteDTO implements Serializable {
         addPerfil(Perfil.CLIENTE);
     }
 
-    public ClienteDTO(Cliente Cliente) {
-        this.id = Cliente.getId();
-        this.nome = Cliente.getNome();
-        this.cpf = Cliente.getCpf();
-        this.email = Cliente.getEmail();
-        this.senha = Cliente.getSenha();
-        this.perfil = Cliente.getPerfil().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
-        this.dataCriacao = Cliente.getDataCriacao();
+    public ClienteDTO(Cliente cliente) {
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
+        this.cpf = cliente.getCpf();
+        this.email = cliente.getEmail();
+        this.senha = cliente.getSenha();
+        this.perfis = cliente.getPerfis().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
+        this.dataCriacao = cliente.getDataCriacao();
         addPerfil(Perfil.CLIENTE);
     }
 
@@ -88,13 +88,13 @@ public class ClienteDTO implements Serializable {
         this.senha = senha;
     }
 
-    public Set<Perfil> getPerfil() {
+    public Set<Perfil> getPerfis() {
 
-        return perfil.stream().map(p -> Perfil.toEnum(p)).collect(Collectors.toSet());
+        return perfis.stream().map(p -> Perfil.toEnum(p)).collect(Collectors.toSet());
     }
 
     public void addPerfil(Perfil perfil) {
-        this.perfil.add(perfil.getCodigo());
+        this.perfis.add(perfil.getCodigo());
     }
 
     public LocalDate getDataCriacao() {

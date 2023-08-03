@@ -28,7 +28,7 @@ public class TecnicoDTO implements Serializable {
     @NotNull(message = "Campo SENHA é requerido!")
     protected String senha;
 
-    protected Set<Integer> perfil = new HashSet<>();
+    protected Set<Integer> perfis = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
@@ -43,7 +43,7 @@ public class TecnicoDTO implements Serializable {
         this.cpf = tecnico.getCpf();
         this.email = tecnico.getEmail();
         this.senha = tecnico.getSenha();
-        this.perfil = tecnico.getPerfil().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
+        this.perfis = tecnico.getPerfis().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = tecnico.getDataCriacao();
         addPerfil(Perfil.CLIENTE);
     }
@@ -88,13 +88,13 @@ public class TecnicoDTO implements Serializable {
         this.senha = senha;
     }
 
-    public Set<Perfil> getPerfil() {
+    public Set<Perfil> getPerfis() {
 
-        return perfil.stream().map(p -> Perfil.toEnum(p)).collect(Collectors.toSet());
+        return perfis.stream().map(p -> Perfil.toEnum(p)).collect(Collectors.toSet());
     }
 
     public void addPerfil(Perfil perfil) {
-        this.perfil.add(perfil.getCodigo());
+        this.perfis.add(perfil.getCodigo());
     }
 
     public LocalDate getDataCriacao() {
